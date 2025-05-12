@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  width: 100%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row; /* Alinha os botões lado a lado */
+  align-items: center; /* Centraliza os botões verticalmente */
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  height: 100vh; /* Ocupa toda a altura da tela */
+  width: 100%; /* Ocupa toda a largura da página */
+  background-color: #f5f5f5; /* Cor de fundo para contraste */
+  gap: 20px; /* Espaçamento entre os botões */
+}
+
+.main-button {
+  flex: 1; /* Faz com que os botões tenham tamanhos iguais */
+  max-width: 300px; /* Limita a largura máxima dos botões */
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #647e18;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.button-2:hover {
+  background-color: #4b5e12;
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+.button-1:hover {
+  background-color: #43441d;
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+.main-button:active {
+  transform: scale(0.95); /* Leve redução ao clicar */
+}
+
+.main-button-text {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: #fff;
+  text-align: center;
+  margin-top: 10px; /* Espaçamento entre o texto e o topo do botão */
+}
+
+.main-button-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-top: 10px; /* Espaçamento entre o texto e o topo do botão */
+}
+
+.button-2 {
+  background-image: url("../images/Headphone.jpg"); /* Caminho relativo para a imagem */
+  background-size: cover; /* Faz com que a imagem cubra todo o botão */
+  background-position: center; /* Centraliza a imagem no botão */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-color: rgba(0, 0, 0, 0.7); /* Adiciona uma sobreposição escura */
+  background-blend-mode: overlay; /* Combina a cor de fundo com a imagem */
+  color: #fff; /* Garante que o texto seja visível sobre a imagem */
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-1 {
+  background-image: url("../images/Listen_music.jpg"); /* Caminho relativo para a imagem */
+  background-size: cover; /* Faz com que a imagem cubra todo o botão */
+  background-position: center; /* Centraliza a imagem no botão */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-color: rgba(0, 0, 0, 0.7); /* Adiciona uma sobreposição escura */
+  background-blend-mode: overlay; /* Combina a cor de fundo com a imagem */
+  color: #fff; /* Garante que o texto seja visível sobre a imagem */
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
