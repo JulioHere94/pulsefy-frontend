@@ -66,7 +66,7 @@
 
 .edit-user-container {
   max-width: 400px;
-  margin: 50px auto;
+  margin: 150px auto;
   padding: 20px;
   background: #ffffff;
   border-radius: 16px;
@@ -74,10 +74,19 @@
   text-align: center;
 }
 
+.edit-user-avatar {
+  width: 100px; /* Tamanho da imagem */
+  height: 100px;
+  border-radius: 50%; /* Torna a imagem circular */
+  object-fit: cover; /* Garante que a imagem se ajuste ao container */
+  margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+}
+
 .edit-user-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-right: 10px;
 }
 
 .edit-input {
@@ -100,4 +109,11 @@
 
 .save-button:hover {
   background-color: #357ab8;
+}
+
+.edit-user-title{
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
 }

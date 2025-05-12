@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../blocks/header.css";
-import "../../blocks/user.css"; // Estilo para o modal do usuário
+import "../../blocks/edit_user.css";
 import Logo from "../../images/Logo_pulsefy.png";
 
 const Header = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleUserModal = () => {
     setIsUserModalOpen(!isUserModalOpen);
@@ -16,7 +18,7 @@ const Header = () => {
   };
 
   const handleEditUser = () => {
-    window.location.href = "/editar-usuario"; // Redireciona para a página de edição do usuário
+    navigate("/editar-usuario"); // Redireciona para a página de edição do usuário
   };
 
   return (
@@ -26,7 +28,7 @@ const Header = () => {
         <nav>
           <ul className="nav-links">
             <li>
-              <a href="index.html" onNavigate = {(main) => {}}>Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="sobre.html">Sobre</a>
@@ -52,7 +54,7 @@ const Header = () => {
               &times;
             </button>
             <h2>Configurações do Usuário</h2>
-            <button className="user-modal-button" onClick={handleEditUser} onNavigate = {(editUser) => {}}>
+            <button className="user-modal-button" onClick={handleEditUser}>
               Alterar Usuário
             </button>
             <button className="user-modal-button logout" onClick={handleLogout}>
