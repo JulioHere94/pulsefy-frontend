@@ -12,12 +12,13 @@
 }
 
 .modal-content {
-  background: #ffffff;
+  background: #191414;
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 32px rgba(30, 50, 30, 0.25);
   text-align: center;
   position: relative;
+  color: #fff;
 }
 
 .close-button {
@@ -28,7 +29,12 @@
   top: 15px;
   right: 15px;
   cursor: pointer;
-  color: #333;
+  color: #1db954;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #1ed760;
 }
 
 .cover-edit-form {
@@ -40,8 +46,16 @@
 .cover-input {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #282828;
   border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+}
+
+.cover-input:focus {
+  outline: none;
+  border-color: #1db954;
+  box-shadow: 0 0 4px rgba(29, 185, 84, 0.5);
 }
 
 .form-buttons {
@@ -51,18 +65,18 @@
 }
 
 .save-button {
-  background-color: #28a745;
-  color: white;
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: #fff;
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s;
 }
 
 .save-button:hover {
-  background-color: #218838;
+  background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
 }
 
 .cancel-button {

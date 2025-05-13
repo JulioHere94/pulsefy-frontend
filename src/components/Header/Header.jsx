@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "../../blocks/header.css";
 import "../../blocks/edit_user.css";
 import Logo from "../../images/Logo_pulsefy.png";
@@ -7,14 +8,16 @@ import Logo from "../../images/Logo_pulsefy.png";
 const Header = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const toggleUserModal = () => {
     setIsUserModalOpen(!isUserModalOpen);
   };
 
   const handleLogout = () => {
+    logout();
     alert("Você foi desconectado!");
-    // Aqui você pode implementar a lógica de logout
+    navigate("/login");
   };
 
   const handleEditUser = () => {
@@ -31,10 +34,10 @@ const Header = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="sobre.html">Sobre</a>
+              <Link to="/sobre">Sobre</Link>
             </li>
             <li>
-              <a href="contato.html">Contato</a>
+              <Link to="/contato">Contato</Link>
             </li>
           </ul>
         </nav>
@@ -53,7 +56,6 @@ const Header = () => {
             <button className="close-button" onClick={toggleUserModal}>
               &times;
             </button>
-            <h2>Configurações do Usuário</h2>
             <button className="user-modal-button" onClick={handleEditUser}>
               Alterar Usuário
             </button>

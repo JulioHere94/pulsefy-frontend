@@ -6,13 +6,15 @@ body {
 
 .main-container {
   display: flex;
-  flex-direction: row; /* Alinha os botões lado a lado */
-  align-items: center; /* Centraliza os botões verticalmente */
-  justify-content: center; /* Centraliza os botões horizontalmente */
-  height: 100vh; /* Ocupa toda a altura da tela */
-  width: 100%; /* Ocupa toda a largura da página */
-  background-color: #f5f5f5; /* Cor de fundo para contraste */
-  gap: 20px; /* Espaçamento entre os botões */
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Garante que ocupe toda a altura da tela */
+  width: 100%;
+  background: linear-gradient(135deg, #1db954 0%, #191414 100%);
+  gap: 20px;
+  padding-top: 80px; /* Espaço para o header fixo */
+  box-sizing: border-box;
 }
 
 .main-button {

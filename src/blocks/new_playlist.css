@@ -12,16 +12,19 @@
 }
 
 .modal-content {
-  background: #f9f9f9;
-  padding: 30px;
-  border-radius: 12px;
-  width: 450px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: #191414;
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(30, 50, 30, 0.25);
+  color: #fff;
+  padding: 32px 32px 24px 32px;
+  min-width: 320px;
+  max-width: 95vw;
   text-align: center;
   position: relative;
 }
 
 .close-button {
+  color: #1db954;
   background: none;
   border: none;
   font-size: 1.8rem;
@@ -29,7 +32,18 @@
   top: 15px;
   right: 15px;
   cursor: pointer;
-  color: #333;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #1ed760;
+}
+
+.modal-content h2,
+.modal-content .title {
+  color: #1db954;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .new-playlist-form {
@@ -41,55 +55,69 @@
 .new-playlist-form label {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #555;
+  color: #1db954;
   text-align: left;
 }
 
-.new-playlist-form select {
+.new-playlist-form select,
+.new-playlist-form input {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #282828;
   border-radius: 8px;
-  background-color: #fff;
-  color: #333;
+  background-color: #222;
+  color: #fff;
 }
 
-.new-playlist-form select:focus {
+.new-playlist-form select:focus,
+.new-playlist-form input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  border-color: #1db954;
+  box-shadow: 0 0 4px rgba(29, 185, 84, 0.5);
 }
 
-.submit-button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px;
+.submit-button,
+.save-button,
+.edit-button,
+.play-button {
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: #fff;
   border: none;
   border-radius: 8px;
+  padding: 10px 0;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: background 0.2s;
 }
 
-.submit-button:hover {
-  background-color: #0056b3;
+.submit-button:hover,
+.save-button:hover,
+.edit-button:hover,
+.play-button:hover {
+  background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
 }
 
-.exit-button {
-  background-color: #dc3545;
-  color: white;
-  padding: 12px;
+.exit-button,
+.cancel-button,
+.user-modal-button.logout {
+  background: #dc3545;
+  color: #fff;
   border: none;
   border-radius: 8px;
+  padding: 10px 0;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  transition: background 0.2s;
 }
 
-.exit-button:hover {
-  background-color: #c82333;
+.exit-button:hover,
+.cancel-button:hover,
+.user-modal-button.logout:hover {
+  background: #c82333;
 }
 
 .form-buttons {
@@ -98,18 +126,10 @@
   gap: 15px;
 }
 
-h2 {
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 20px;
+.title {
+  font-size: 1.5rem;
+  color: #1db954;
+  margin-bottom: 30px;
   font-weight: bold;
-}
-
-.title{
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-    font-weight: bold;
-    font: "Inter", sans-serif;
-    margin-bottom: 30px;
+  font-family: "Inter", sans-serif;
 }
