@@ -13,6 +13,7 @@ import Login from "./components/Login/login";
 import Signup from "./components/Signup/signup";
 import About from "./components/about/about";
 import Contact from "./components/contact/contact";
+import NotFound from "./components/NotFound/notfound";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -55,7 +56,7 @@ const App = () => (
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </AuthProvider>
