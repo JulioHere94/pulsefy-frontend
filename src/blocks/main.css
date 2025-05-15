@@ -47,6 +47,11 @@ body {
   transform: scale(1.05); /* Leve aumento ao passar o mouse */
 }
 
+.button-0:hover {
+  background-color: #43441d;
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
 .main-button:active {
   transform: scale(0.95); /* Leve redução ao clicar */
 }
@@ -98,3 +103,60 @@ body {
   transition: transform 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.button-0 {
+  background-image: url("../images/fundo_artista.jpg"); /* Caminho relativo para a imagem */
+  background-size: cover; /* Faz com que a imagem cubra todo o botão */
+  background-position: center; /* Centraliza a imagem no botão */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-color: rgba(0, 0, 0, 0.7); /* Adiciona uma sobreposição escura */
+  background-blend-mode: overlay; /* Combina a cor de fundo com a imagem */
+  color: #fff; /* Garante que o texto seja visível sobre a imagem */
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 885px) {
+  .main-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 20px 20px 20px;
+    min-height: unset;
+    margin-top: 220px;
+  }
+
+  .main-button {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+  .main-button-title {
+    font-size: 1.2rem;
+    margin-top: 0;
+  }
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 500px) {
+  .main-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 220px;
+  }
+  .main-button {
+    font-size: 1rem;
+    padding: 10px;
+    min-height: 80px;
+  }
+  .main-button-title {
+    font-size: 1rem;
+  }
+}
+

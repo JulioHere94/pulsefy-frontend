@@ -57,6 +57,7 @@
   width: 100%;
   transition: background 0.3s;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .user-modal-button:hover {

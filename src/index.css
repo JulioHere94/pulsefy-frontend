@@ -1,3 +1,4 @@
+@import "./vendor/normalize.css";
 @import "./blocks/login.css";
 @import "./blocks/signup.css";
 @import "./blocks/header.css";
@@ -8,3 +9,4 @@
 @import "./blocks/playlist.css";
 @import "./blocks/cover_edit.css";
 @import "./blocks/body.css";
+@import "./vendor/fonts.css";

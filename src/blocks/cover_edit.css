@@ -93,3 +93,10 @@
 .cancel-button:hover {
   background-color: #c82333;
 }
+
+@media (max-width: 600px) {
+  .favorites-modal-content {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

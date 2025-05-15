@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useModalClose } from "../../../utils/usemodalClose";
 import "../../../blocks/playlist.css";
 import CoverEdit from "./Cover_edit/cover_edit";
-import Play from "../../../images/botao-play.png"
+import Play from "../../../images/botao-play.png";
 
 const Playlist = ({ closeModal }) => {
   const [playlists, setPlaylists] = useState([
@@ -30,6 +31,9 @@ const Playlist = ({ closeModal }) => {
   const [isCoverEditOpen, setIsCoverEditOpen] = useState(false);
   const [currentCover, setCurrentCover] = useState("");
   const [currentCoverId, setCurrentCoverId] = useState(null);
+
+  const modalRef = useRef(null);
+  useModalClose(modalRef, closeModal);
 
   const startEditing = (id, currentName) => {
     setEditingId(id);
@@ -69,7 +73,7 @@ const Playlist = ({ closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" ref={modalRef}>
       <div className="modal-content">
         <button className="close-button" onClick={closeModal}>
           &times;
@@ -121,7 +125,8 @@ const Playlist = ({ closeModal }) => {
               </button>
               <button
                 className="play-button"
-                onClick={() => playPlaylist(playlist.id)}>
+                onClick={() => playPlaylist(playlist.id)}
+              >
                 <img src={Play} alt="Play" className="play-icon" />
               </button>
             </li>

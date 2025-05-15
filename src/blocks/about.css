@@ -38,3 +38,51 @@
   margin-top: 16px;
   line-height: 1.7;
 }
+
+@media (max-width: 885px) {
+  .about-container {
+    margin: 150px 10px 30px 10px;
+    padding: 24px 10px 24px 10px;
+    max-width: 98vw;
+  }
+  .about-logos {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .about-logo {
+    height: 50px;
+    padding: 6px 10px;
+  }
+  .about-title {
+    font-size: 1.5rem;
+  }
+  .about-content {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .about-container {
+    margin: 120px 2vw 20px 2vw;
+    padding: 12px 2vw 16px 2vw;
+    border-radius: 10px;
+  }
+  .about-logos {
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-logo {
+    height: 38px;
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+  .about-title {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+  }
+  .about-content {
+    font-size: 0.95rem;
+    margin-top: 10px;
+  }
+}

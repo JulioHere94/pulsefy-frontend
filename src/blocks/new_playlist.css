@@ -133,3 +133,10 @@
   font-weight: bold;
   font-family: "Inter", sans-serif;
 }
+
+@media (max-width: 600px) {
+  .favorites-modal-content {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

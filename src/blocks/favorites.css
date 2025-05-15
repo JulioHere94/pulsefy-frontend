@@ -1,0 +1,68 @@
+.favorites-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.favorites-modal-content {
+  background: #191414;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 320px;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+}
+
+.favorites-modal-content h2 {
+  margin-bottom: 1.5rem; /* Espaço entre o título e o form */
+}
+
+.favorites-modal-content form {
+  margin: 0; /* Remove margem padrão do form */
+  padding-right: 15px;
+}
+
+.favorites-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #1db954; /* Verde Spotify */
+  transition: color 0.2s;
+}
+.favorites-close:hover {
+  color: #1ed760; /* Verde Spotify mais claro no hover */
+}
+
+.favorites-input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.favorites-save {
+  background: #1db954;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  .favorites-modal-content {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

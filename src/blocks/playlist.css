@@ -162,3 +162,10 @@ h2 {
   width: 20px;
   height: 20px;
 }
+
+@media (max-width: 600px) {
+  .favorites-modal-content {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

@@ -1,46 +1,45 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "../../blocks/header.css";
 import "../../blocks/edit_user.css";
 import Logo from "../../images/Logo_pulsefy.png";
+import Navigation from "../Navigation/navigation";
 
 const Header = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-  const toggleUserModal = () => {
-    setIsUserModalOpen(!isUserModalOpen);
-  };
-
+  const toggleUserModal = () => setIsUserModalOpen(!isUserModalOpen);
   const handleLogout = () => {
     logout();
     alert("Você foi desconectado!");
     navigate("/login");
   };
+  const handleEditUser = () => navigate("/editar-usuario");
 
-  const handleEditUser = () => {
-    navigate("/editar-usuario"); // Redireciona para a página de edição do usuário
-  };
+  // Fecha menu mobile ao navegar
+  const handleNavClick = () => setIsMobileMenuOpen(false);
 
   return (
     <header>
       <div className="header-container">
         <img src={Logo} alt="Logo" className="logo" />
-        <nav>
-          <ul className="nav-links">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/sobre">Sobre</Link>
-            </li>
-            <li>
-              <Link to="/contato">Contato</Link>
-            </li>
-          </ul>
-        </nav>
+        <button
+          className="hamburger"
+          aria-label="Abrir menu"
+          onClick={() => setIsMobileMenuOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <Navigation
+          isMobileMenuOpen={isMobileMenuOpen}
+          handleNavClick={handleNavClick}
+        />
         <div className="user-box" onClick={toggleUserModal}>
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJfmT5MclUjitj8NyMA0tRWoxClHDs0-zsQ&s"

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useModalClose } from "../../../utils/usemodalClose";
 import "../../../blocks/new_playlist.css";
 
 const NewPlaylist = ({ closeModal }) => {
+  const modalRef = useRef(null);
+  useModalClose(modalRef, closeModal);
+
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" ref={modalRef}>
       <div className="modal-content">
         <button className="close-button" onClick={closeModal}>
           &times;

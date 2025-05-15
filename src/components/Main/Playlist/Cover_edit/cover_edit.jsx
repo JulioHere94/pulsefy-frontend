@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useModalClose } from "../../../../utils/usemodalClose";
 import "../../../../blocks/cover_edit.css";
 
 const CoverEdit = ({ currentCover, onSave, onClose }) => {
   const [newCover, setNewCover] = useState(currentCover);
+  const modalRef = useRef(null);
+  useModalClose(modalRef, onClose);
 
   const handleSave = () => {
     onSave(newCover);
@@ -10,7 +13,7 @@ const CoverEdit = ({ currentCover, onSave, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" ref={modalRef}>
       <div className="modal-content">
         <button className="close-button" onClick={onClose}>
           &times;
