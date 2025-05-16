@@ -9,12 +9,85 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Garante que ocupe toda a altura da tela */
+  min-height: calc(100vh - 160px);
   width: 100%;
   background: linear-gradient(135deg, #1db954 0%, #191414 100%);
   gap: 20px;
-  padding-top: 80px; /* Espaço para o header fixo */
+  padding: 80px 20px 20px 20px;
   box-sizing: border-box;
+}
+
+.main-buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.spotify-login-container {
+  background: rgba(25, 20, 20, 0.85);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+
+.spotify-login-title {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.spotify-login-description {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.spotify-login-button {
+  background-color: #1db954;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+.spotify-login-button:hover {
+  background-color: #1ed760;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
+}
+
+.spotify-login-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(29, 185, 84, 0.3);
+}
+
+.spotify-login-button img {
+  height: 24px;
+  margin-right: 12px;
 }
 
 .main-button {
@@ -124,9 +197,26 @@ body {
   .main-container {
     flex-direction: column;
     gap: 16px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
     min-height: unset;
-    margin-top: 220px;
+    margin-top: 80px;
+  }
+
+  .main-buttons-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .spotify-login-container {
+    padding: 2rem;
+  }
+
+  .spotify-login-title {
+    font-size: 1.8rem;
+  }
+
+  .spotify-login-description {
+    font-size: 1rem;
   }
 
   .main-button {
@@ -146,10 +236,28 @@ body {
 /* Ajuste para telas muito pequenas */
 @media (max-width: 500px) {
   .main-container {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 220px;
+    padding: 15px;
+    margin-top: 60px;
   }
+
+  .spotify-login-container {
+    padding: 1.5rem;
+  }
+
+  .spotify-login-title {
+    font-size: 1.5rem;
+  }
+
+  .spotify-login-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .spotify-login-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
   .main-button {
     font-size: 1rem;
     padding: 10px;
@@ -160,3 +268,97 @@ body {
   }
 }
 
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1db954 0%, #191414 100%);
+  color: white;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spotify-callback-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1db954 0%, #191414 100%);
+}
+
+.spotify-callback-content {
+  background: rgba(25, 20, 20, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.spotify-callback-content h2 {
+  color: #1db954;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.spotify-callback-content p {
+  color: #b3b3b3;
+  font-size: 1rem;
+}
+
+.welcome-container {
+  background: rgba(25, 20, 20, 0.85);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+
+.welcome-title {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.welcome-description {
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 500px) {
+  .welcome-container {
+    padding: 1.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-description {
+    font-size: 0.9rem;
+  }
+}

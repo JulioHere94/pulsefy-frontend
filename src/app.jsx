@@ -14,51 +14,56 @@ import Signup from "./components/Signup/signup";
 import About from "./components/about/about";
 import Contact from "./components/contact/contact";
 import NotFound from "./components/NotFound/notfound";
+import SpotifyCallback from "./components/SpotifyCallback/SpotifyCallback";
 import { AuthProvider } from "./context/AuthContext";
+import { SpotifyProvider } from "./context/SpotifyContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => (
   <StrictMode>
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Main />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/editar-usuario"
-            element={
-              <ProtectedRoute>
-                <EditUser />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/sobre"
-            element={
-              <ProtectedRoute>
-                <About />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/contato"
-            element={
-              <ProtectedRoute>
-                <Contact />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
+      <SpotifyProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/callback" element={<SpotifyCallback />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Main />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/editar-usuario"
+              element={
+                <ProtectedRoute>
+                  <EditUser />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/sobre"
+              element={
+                <ProtectedRoute>
+                  <About />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/contato"
+              element={
+                <ProtectedRoute>
+                  <Contact />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </SpotifyProvider>
     </AuthProvider>
   </StrictMode>
 );
