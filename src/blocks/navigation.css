@@ -25,6 +25,7 @@
 
 .nav-mobile {
   position: static;
+  margin-left:300px;
 }
 
 @media (max-width: 700px) {

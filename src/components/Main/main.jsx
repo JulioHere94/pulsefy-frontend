@@ -4,7 +4,7 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import NewPlaylist from "./New_playlist/new_playlist";
 import Playlist from "./Playlist/playlist";
-import Favorites from "./Favorites/favorites";
+import Favorites from "../Favorites/Favorites";
 import { useSpotify } from "../../context/SpotifyContext";
 
 const Main = () => {
@@ -88,7 +88,11 @@ const Main = () => {
         </div>
       </main>
       {isFavoritesOpen && (
-        <Favorites closeModal={closeFavorites} onSave={handleSaveFavorites} />
+        <Favorites
+          accessToken={spotifyToken}
+          onSaveFavorites={handleSaveFavorites}
+          closeModal={closeFavorites}
+        />
       )}
       {isModalOpen && <NewPlaylist closeModal={closeModal} />}
       {isPlaylistModalOpen && <Playlist closeModal={closePlaylistModal} />}

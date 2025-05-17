@@ -15,6 +15,7 @@ body {
   gap: 20px;
   padding: 80px 20px 20px 20px;
   box-sizing: border-box;
+  margin-top:80px;
 }
 
 .main-buttons-container {
