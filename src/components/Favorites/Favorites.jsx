@@ -195,7 +195,9 @@ const Favorites = ({ accessToken, onSaveFavorites, closeModal }) => {
                     <div key={artist.id} className="selected-artist-card">
                       <img
                         src={
-                          artist.images[0]?.url || "default-artist-image.png"
+                          artist.images && artist.images.length > 0
+                            ? artist.images[0].url
+                            : "default-artist-image.png"
                         }
                         alt={artist.name}
                         className="selected-artist-image"

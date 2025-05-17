@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../../blocks/main.css";
 import Header from "../Header/header";
 import Footer from "../Footer/footer";
-import NewPlaylist from "./New_playlist/new_playlist";
 import Playlist from "./Playlist/playlist";
 import Favorites from "../Favorites/Favorites";
+import PlaylistGenerator from "../PlaylistGenerator/PlaylistGenerator";
 import { useSpotify } from "../../context/SpotifyContext";
 
 const Main = () => {
@@ -67,9 +67,10 @@ const Main = () => {
       <main className="main-container">
         <div className="main-buttons-container">
           <button className="main-button button-0" onClick={openFavorites}>
-            Artistas/Bandas Favoritos
+            Artistas/Bandas
             <p className="main-button-text">
-              Clique para definir os artistas/bandas que você mais gosta.
+              Conheça os artistas/bandas, trazemos informações tais como:
+              albuns, biografias e muito mais.
             </p>
           </button>
           <button className="main-button button-1" onClick={openModal}>
@@ -94,7 +95,7 @@ const Main = () => {
           closeModal={closeFavorites}
         />
       )}
-      {isModalOpen && <NewPlaylist closeModal={closeModal} />}
+      {isModalOpen && <PlaylistGenerator closeModal={closeModal} />}
       {isPlaylistModalOpen && <Playlist closeModal={closePlaylistModal} />}
       <Footer />
     </>
