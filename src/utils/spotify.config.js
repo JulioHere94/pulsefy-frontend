@@ -16,6 +16,11 @@ const scopes = [
   "user-read-private",
   "playlist-modify-public",
   "playlist-modify-private",
+  "playlist-read-private",
+  "playlist-read-collaborative",
+  "user-follow-modify",
+  "user-follow-read",
+  "user-library-read",
 ];
 
 // Construindo a URL de autorização

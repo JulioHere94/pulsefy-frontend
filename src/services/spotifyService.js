@@ -2,7 +2,7 @@ import axios from "axios";
 
 const SPOTIFY_API_BASE_URL = "https://api.spotify.com/v1";
 
-export const spotifyService = {
+const spotifyService = {
   // Get user's top artists
   getTopArtists: async (accessToken) => {
     try {
@@ -113,7 +113,7 @@ export const spotifyService = {
         chunks.push(trackUris.slice(i, i + 100));
       }
 
-      const promises = chunks.map(chunk =>
+      const promises = chunks.map((chunk) =>
         axios.post(
           `${SPOTIFY_API_BASE_URL}/playlists/${playlistId}/tracks`,
           {
@@ -135,4 +135,95 @@ export const spotifyService = {
       throw error;
     }
   },
+
+  // Get user's playlists
+  getUserPlaylists: async (accessToken) => {
+    try {
+      console.log("Token completo usado na requisição:", accessToken);
+      console.log("Headers da requisição:", {
+        Authorization: `Bearer ${accessToken?.substring(0, 10)}...`,
+      });
+
+      let allPlaylists = [];
+      let nextUrl = `${SPOTIFY_API_BASE_URL}/me/playlists?limit=50`;
+
+      while (nextUrl) {
+        console.log("Fazendo requisição para:", nextUrl);
+        const response = await axios.get(nextUrl, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        console.log("Resposta completa da API:", {
+          status: response.status,
+          data: response.data,
+          headers: response.headers,
+          config: {
+            url: response.config.url,
+            headers: response.config.headers,
+          },
+        });
+
+        // Log detalhado da resposta
+        console.log("Detalhes da resposta:", {
+          total: response.data.total,
+          limit: response.data.limit,
+          offset: response.data.offset,
+          next: response.data.next,
+          items: response.data.items?.length || 0,
+        });
+
+        if (response.data.items) {
+          allPlaylists = [...allPlaylists, ...response.data.items];
+        }
+        nextUrl = response.data.next;
+      }
+
+      console.log("Total de playlists encontradas:", allPlaylists.length);
+      console.log("Primeiras playlists:", allPlaylists.slice(0, 2));
+
+      // Sort playlists by creation date (newest first)
+      const sortedPlaylists = allPlaylists.sort((a, b) => {
+        const dateA = new Date(a.created_at || a.added_at);
+        const dateB = new Date(b.created_at || b.added_at);
+        return dateB - dateA;
+      });
+
+      return sortedPlaylists;
+    } catch (error) {
+      console.error("Erro completo:", error);
+      console.error("Dados do erro:", {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+        headers: error.response?.headers,
+        config: error.config,
+      });
+      throw error;
+    }
+  },
+
+  // Get playlist tracks
+  getPlaylistTracks: async (accessToken, playlistId) => {
+    try {
+      const response = await axios.get(
+        `${SPOTIFY_API_BASE_URL}/playlists/${playlistId}/tracks`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            limit: 100,
+          },
+        }
+      );
+      return response.data.items.map((item) => item.track);
+    } catch (error) {
+      console.error("Error fetching playlist tracks:", error);
+      throw error;
+    }
+  },
 };
+
+export default spotifyService;

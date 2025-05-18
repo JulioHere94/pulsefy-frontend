@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { spotifyService } from "../../services/spotifyService";
+import spotifyService from "../../services/spotifyService";
 import { favoritesService } from "../../services/favoritesService";
 import "../../blocks/favorites.css";
 

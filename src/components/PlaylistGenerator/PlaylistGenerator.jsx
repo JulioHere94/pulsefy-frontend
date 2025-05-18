@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { lastFmService } from "../../services/lastFmService";
 import { favoritesService } from "../../services/favoritesService";
-import { spotifyService } from "../../services/spotifyService";
+import spotifyService from "../../services/spotifyService";
 import { useSpotify } from "../../context/SpotifyContext";
 import "../../blocks/playlist-generator.css";
 

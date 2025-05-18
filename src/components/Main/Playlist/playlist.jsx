@@ -1,143 +1,194 @@
-import React, { useState, useRef } from "react";
-import { useModalClose } from "../../../utils/usemodalClose";
+import React, { useState, useEffect } from "react";
+import spotifyService from "../../../services/spotifyService";
+import { useSpotify } from "../../../context/SpotifyContext";
 import "../../../blocks/playlist.css";
-import CoverEdit from "./Cover_edit/cover_edit";
-import Play from "../../../images/botao-play.png";
 
 const Playlist = ({ closeModal }) => {
-  const [playlists, setPlaylists] = useState([
-    {
-      id: 1,
-      name: "Playlist Feliz",
-      date: "12/05/2025",
-      genre: "Pop",
-      mood: "Feliz",
-      cover:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzpwoKaeKfCwBaM-HuokUU-j2ph0s0oUABlQ&s",
-    },
-    {
-      id: 2,
-      name: "Playlist Relaxada",
-      date: "10/05/2025",
-      genre: "Jazz",
-      mood: "Relaxado",
-      cover:
-        "https://akamai.sscdn.co/letras/360x360/albuns/a/2/7/a/201381628624477.jpg",
-    },
-  ]);
+  const [playlists, setPlaylists] = useState([]);
+  const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+  const [tracks, setTracks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { spotifyToken } = useSpotify();
 
-  const [editingId, setEditingId] = useState(null);
-  const [editedName, setEditedName] = useState("");
-  const [isCoverEditOpen, setIsCoverEditOpen] = useState(false);
-  const [currentCover, setCurrentCover] = useState("");
-  const [currentCoverId, setCurrentCoverId] = useState(null);
-
-  const modalRef = useRef(null);
-  useModalClose(modalRef, closeModal);
-
-  const startEditing = (id, currentName) => {
-    setEditingId(id);
-    setEditedName(currentName);
-  };
-
-  const saveEdit = (id) => {
-    setPlaylists((prevPlaylists) =>
-      prevPlaylists.map((playlist) =>
-        playlist.id === id ? { ...playlist, name: editedName } : playlist
-      )
+  useEffect(() => {
+    console.log(
+      "Token no componente Playlist:",
+      spotifyToken?.substring(0, 10) + "..."
     );
-    setEditingId(null);
-    setEditedName("");
+    if (spotifyToken) {
+      loadPlaylists();
+    } else {
+      setError(
+        "Token do Spotify não encontrado. Por favor, faça login novamente."
+      );
+      setIsLoading(false);
+    }
+  }, [spotifyToken]);
+
+  const loadPlaylists = async () => {
+    try {
+      console.log(
+        "Iniciando carregamento de playlists com token:",
+        spotifyToken?.substring(0, 10) + "..."
+      );
+      setIsLoading(true);
+      setError(null);
+
+      const userPlaylists = await spotifyService.getUserPlaylists(spotifyToken);
+      console.log("Resposta completa das playlists:", userPlaylists);
+
+      if (!userPlaylists || userPlaylists.length === 0) {
+        setError(
+          "Nenhuma playlist encontrada. Crie uma playlist no Spotify e tente novamente."
+        );
+      } else {
+        setPlaylists(userPlaylists);
+      }
+    } catch (error) {
+      console.error("Erro detalhado:", error);
+      console.error("Resposta do erro:", error.response?.data);
+      if (error.response?.status === 401) {
+        setError("Sua sessão expirou. Por favor, faça login novamente.");
+      } else {
+        setError(`Erro ao carregar playlists: ${error.message}`);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const openCoverEdit = (id, cover) => {
-    setCurrentCoverId(id);
-    setCurrentCover(cover);
-    setIsCoverEditOpen(true);
+  const handlePlaylistSelect = async (playlist) => {
+    try {
+      console.log("Loading tracks for playlist:", playlist.name);
+      setIsLoading(true);
+      setError(null);
+      setSelectedPlaylist(playlist);
+
+      const playlistTracks = await spotifyService.getPlaylistTracks(
+        spotifyToken,
+        playlist.id
+      );
+      console.log("Tracks loaded:", playlistTracks.length);
+      setTracks(playlistTracks);
+    } catch (error) {
+      console.error("Error in handlePlaylistSelect:", error);
+      setError("Erro ao carregar músicas da playlist. Tente novamente.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const saveCoverEdit = (newCover) => {
-    setPlaylists((prevPlaylists) =>
-      prevPlaylists.map((playlist) =>
-        playlist.id === currentCoverId
-          ? { ...playlist, cover: newCover }
-          : playlist
-      )
-    );
-    setIsCoverEditOpen(false);
+  const getPlaylistImage = (playlist) => {
+    if (playlist?.images && playlist.images.length > 0) {
+      return playlist.images[0].url;
+    }
+    return "default-playlist.png";
   };
 
-  const playPlaylist = (id) => {
-    alert(`Tocando a playlist com ID: ${id}`);
-    // Aqui você pode implementar a lógica para tocar a playlist
+  const getTrackImage = (track) => {
+    if (track?.album?.images && track.album.images.length > 0) {
+      return track.album.images[0].url;
+    }
+    return "default-track.png";
   };
 
   return (
-    <div className="modal-overlay" ref={modalRef}>
-      <div className="modal-content">
-        <button className="close-button" onClick={closeModal}>
-          &times;
+    <div className="playlist-modal">
+      <div className="playlist-modal-content">
+        <button className="playlist-close" onClick={closeModal}>
+          ×
         </button>
-        <h2>Playlists Geradas</h2>
-        <ul className="playlist-list">
-          {playlists.map((playlist) => (
-            <li key={playlist.id} className="playlist-item">
-              <img
-                src={playlist.cover}
-                alt={`Capa da ${playlist.name}`}
-                className="playlist-cover"
-              />
-              <div className="playlist-info">
-                {editingId === playlist.id ? (
-                  <input
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    className="edit-input"
-                  />
-                ) : (
-                  <h3>{playlist.name}</h3>
-                )}
-                <p>Data: {playlist.date}</p>
-                <p>Gênero: {playlist.genre}</p>
-                <p>Humor: {playlist.mood}</p>
-              </div>
-              {editingId === playlist.id ? (
-                <button
-                  className="save-button"
-                  onClick={() => saveEdit(playlist.id)}
-                >
-                  Salvar
-                </button>
+        <div className="playlist-header">
+          <h2>Suas Playlists</h2>
+          <button
+            className="refresh-button"
+            onClick={loadPlaylists}
+            disabled={isLoading}
+          >
+            {isLoading ? "Atualizando..." : "Atualizar Lista"}
+          </button>
+        </div>
+
+        {error && <div className="error-message">{error}</div>}
+
+        {isLoading ? (
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>Carregando...</p>
+          </div>
+        ) : (
+          <div className="playlist-container">
+            <div className="playlist-list">
+              {playlists.length === 0 ? (
+                <div className="no-playlists-message">
+                  Nenhuma playlist encontrada. Crie uma playlist no Spotify e
+                  tente novamente.
+                </div>
               ) : (
-                <button
-                  className="edit-button"
-                  onClick={() => startEditing(playlist.id, playlist.name)}
-                >
-                  Editar Nome
-                </button>
+                playlists.map((playlist) => (
+                  <div
+                    key={playlist.id}
+                    className={`playlist-item ${
+                      selectedPlaylist?.id === playlist.id ? "selected" : ""
+                    }`}
+                    onClick={() => handlePlaylistSelect(playlist)}
+                  >
+                    <img
+                      src={getPlaylistImage(playlist)}
+                      alt={playlist.name || "Playlist"}
+                      className="playlist-cover"
+                    />
+                    <div className="playlist-info">
+                      <h3>{playlist.name || "Playlist sem nome"}</h3>
+                      <p>{playlist.tracks?.total || 0} músicas</p>
+                    </div>
+                  </div>
+                ))
               )}
-              <button
-                className="edit-button"
-                onClick={() => openCoverEdit(playlist.id, playlist.cover)}
-              >
-                Editar Capa
-              </button>
-              <button
-                className="play-button"
-                onClick={() => playPlaylist(playlist.id)}
-              >
-                <img src={Play} alt="Play" className="play-icon" />
-              </button>
-            </li>
-          ))}
-        </ul>
-        {isCoverEditOpen && (
-          <CoverEdit
-            currentCover={currentCover}
-            onSave={saveCoverEdit}
-            onClose={() => setIsCoverEditOpen(false)}
-          />
+            </div>
+
+            {selectedPlaylist && (
+              <div className="playlist-tracks">
+                <h3>
+                  Músicas em {selectedPlaylist.name || "Playlist sem nome"}
+                </h3>
+                <div className="tracks-list">
+                  {tracks.length === 0 ? (
+                    <div className="no-tracks-message">
+                      Nenhuma música encontrada nesta playlist.
+                    </div>
+                  ) : (
+                    tracks.map((track) => (
+                      <div key={track.id} className="track-item">
+                        <img
+                          src={getTrackImage(track)}
+                          alt={track.name || "Música"}
+                          className="track-cover"
+                        />
+                        <div className="track-info">
+                          <h4>{track.name || "Música sem nome"}</h4>
+                          <p>
+                            {track.artists
+                              ?.map((artist) => artist.name)
+                              .join(", ") || "Artista desconhecido"}
+                          </p>
+                        </div>
+                        <a
+                          href={track.external_urls?.spotify || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="track-link"
+                        >
+                          Ouvir no Spotify
+                        </a>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
