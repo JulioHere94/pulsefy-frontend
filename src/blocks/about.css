@@ -1,6 +1,6 @@
 .about-container {
   max-width: 700px;
-  margin: 120px auto 40px auto;
+  margin: 175px auto 160px auto;
   background: #191414cc;
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(30, 50, 30, 0.25);
@@ -39,11 +39,18 @@
   line-height: 1.7;
 }
 
+.about-apis {
+  margin-top: 24px;
+  font-size: 1rem;
+  color: #1db954;
+}
+
 @media (max-width: 885px) {
   .about-container {
     margin: 150px 10px 30px 10px;
     padding: 24px 10px 24px 10px;
     max-width: 98vw;
+    height: 65vh;
   }
   .about-logos {
     gap: 20px;
@@ -66,6 +73,7 @@
     margin: 120px 2vw 20px 2vw;
     padding: 12px 2vw 16px 2vw;
     border-radius: 10px;
+    height: 72vh;
   }
   .about-logos {
     gap: 10px;

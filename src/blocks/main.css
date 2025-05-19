@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .main-container {
@@ -15,17 +16,16 @@ body {
   gap: 20px;
   padding: 80px 20px 20px 20px;
   box-sizing: border-box;
-  margin-top:80px;
+  margin-top: 80px;
+  overflow-x: hidden;
 }
 
 .main-buttons-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
+  gap: 2rem;
+  padding: 2rem;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
 .spotify-login-container {
@@ -200,12 +200,14 @@ body {
     gap: 16px;
     padding: 20px;
     min-height: unset;
-    margin-top: 80px;
+    margin-top: 10px;
+    height: 750px;
   }
 
   .main-buttons-container {
     flex-direction: column;
     gap: 16px;
+    margin-top: 130px;
   }
 
   .spotify-login-container {
@@ -238,7 +240,6 @@ body {
 @media (max-width: 500px) {
   .main-container {
     padding: 15px;
-    margin-top: 60px;
   }
 
   .spotify-login-container {

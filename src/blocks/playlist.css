@@ -29,6 +29,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .playlist-header h2 {
@@ -62,25 +63,6 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
-}
-
-.playlist-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.playlist-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg);
 }
 
 .playlist-container {
@@ -194,6 +176,7 @@
   border-radius: 12px;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 125%;
 }
 
 .track-item:hover {

@@ -23,22 +23,6 @@
   position: relative;
 }
 
-.close-button {
-  color: #1db954;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.close-button:hover {
-  color: #1ed760;
-}
-
 .modal-content h2,
 .modal-content .title {
   color: #1db954;

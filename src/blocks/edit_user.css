@@ -23,19 +23,23 @@
 }
 
 .close-button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: #1db954;
-  transition: color 0.2s;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .close-button:hover {
-  color: #1ed760;
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
 }
 
 .user-modal h2 {
@@ -57,7 +61,7 @@
   width: 100%;
   transition: background 0.3s;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 45px;
 }
 
 .user-modal-button:hover {

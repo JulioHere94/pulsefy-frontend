@@ -22,16 +22,37 @@
   position: relative;
 }
 
-.playlist-generator-close {
+.playlist-generator-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.close-button,
+.playlist-generator-close,
+.playlist-close,
+.favorites-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: none;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.close-button:hover,
+.playlist-generator-close:hover,
+.playlist-close:hover,
+.favorites-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
 }
 
 .playlist-generator-form {

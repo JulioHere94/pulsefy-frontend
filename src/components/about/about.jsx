@@ -30,6 +30,9 @@ const About = () => (
           Projeto desenvolvido por <strong>Julio Cesar Heredia</strong> como
           parte do desafio final do bootcamp.
         </p>
+        <p className="about-apis">
+          Powered by: <strong>Spotify</strong> and <strong>Last.fm</strong>
+        </p>
       </section>
     </main>
     <Footer />

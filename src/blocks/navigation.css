@@ -17,6 +17,7 @@
   color: #333;
   font-weight: bold;
   transition: color 0.3s;
+  font-size: 1.1rem;
 }
 
 .nav-links a:hover {
@@ -25,37 +26,60 @@
 
 .nav-mobile {
   position: static;
-  margin-left:300px;
+  margin-left: 300px;
 }
 
-@media (max-width: 700px) {
-  .nav-links {
-    gap: 10px;
-    margin-right: 0;
+@media (max-width: 1024px) {
+  .nav-mobile {
+    margin-left: 200px;
   }
 }
 
-@media (max-width: 699px) {
+@media (max-width: 1161px) {
+  .nav-mobile {
+    margin-left: 0;
+  }
+
   .nav-links {
+    display: none;
     flex-direction: column;
     gap: 18px;
     background: #191414;
     position: fixed;
     top: 60px;
     left: 0;
-    width: 100vw;
+    width: 100%;
+    height: calc(100vh - 60px);
     padding: 30px 0 20px 0;
     margin: 0;
     z-index: 1100;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    display: none;
+    transition: all 0.3s ease;
   }
+
   .nav-mobile.open .nav-links {
     display: flex;
-    margin-top: 20px;
+    margin-top: 51px;
     padding-left: 20px;
   }
+
   .nav-links a {
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    display: block;
+    width: 100%;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
     color: #1db954;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    top: 50px;
+    height: calc(100vh - 50px);
   }
 }

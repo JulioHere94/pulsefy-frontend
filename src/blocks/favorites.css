@@ -80,21 +80,7 @@
   margin-bottom: 1.5rem;
 }
 
-.favorites-close {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #1db954;
-  transition: color 0.2s;
-}
-
-.favorites-close:hover {
-  color: #1ed760;
-}
+/* Removed favorites-close styles as they are now unified in playlist-generator.css */
 
 .search-form {
   display: flex;

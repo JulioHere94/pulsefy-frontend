@@ -4,18 +4,11 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 
 const Contact = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
   const [enviado, setEnviado] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aqui você pode integrar com um backend ou serviço de e-mail
+    // Formsubmit will handle the submission
     setEnviado(true);
-    setNome("");
-    setEmail("");
-    setMensagem("");
   };
 
   return (
@@ -27,28 +20,31 @@ const Contact = () => {
           Tem alguma dúvida, sugestão ou feedback? Preencha o formulário abaixo
           e entrarei em contato!
         </p>
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          action="https://formsubmit.co/julioh.vivancos@gmail.com"
+          method="POST"
+          onSubmit={handleSubmit}
+        >
+          <input type="hidden" name="_next" value={window.location.href} />
           <input
             type="text"
+            name="name"
             className="contact-input"
             placeholder="Seu nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
             required
           />
           <input
             type="email"
+            name="email"
             className="contact-input"
             placeholder="Seu e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <textarea
+            name="message"
             className="contact-textarea"
             placeholder="Sua mensagem"
-            value={mensagem}
-            onChange={(e) => setMensagem(e.target.value)}
             required
             rows={5}
           />
