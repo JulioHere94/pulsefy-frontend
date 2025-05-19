@@ -46,9 +46,6 @@ export const getTokenFromUrl = () => {
 // Função para obter o token de acesso usando o código de autorização
 export const getAccessToken = async (code) => {
   try {
-    console.log("Iniciando troca do código por tokens...");
-    console.log("Código recebido:", code);
-    console.log("Redirect URI:", redirectUri);
 
     const response = await fetch(tokenEndpoint, {
       method: "POST",
@@ -74,11 +71,6 @@ export const getAccessToken = async (code) => {
     }
 
     const data = await response.json();
-    console.log("Resposta do Spotify:", {
-      access_token: data.access_token ? "Presente" : "Ausente",
-      refresh_token: data.refresh_token ? "Presente" : "Ausente",
-      expires_in: data.expires_in,
-    });
     return data;
   } catch (error) {
     console.error("Error getting access token:", error);

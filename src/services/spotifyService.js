@@ -139,49 +139,23 @@ const spotifyService = {
   // Get user's playlists
   getUserPlaylists: async (accessToken) => {
     try {
-      console.log("Token completo usado na requisição:", accessToken);
-      console.log("Headers da requisição:", {
-        Authorization: `Bearer ${accessToken?.substring(0, 10)}...`,
-      });
 
       let allPlaylists = [];
       let nextUrl = `${SPOTIFY_API_BASE_URL}/me/playlists?limit=50`;
 
       while (nextUrl) {
-        console.log("Fazendo requisição para:", nextUrl);
         const response = await axios.get(nextUrl, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         });
 
-        console.log("Resposta completa da API:", {
-          status: response.status,
-          data: response.data,
-          headers: response.headers,
-          config: {
-            url: response.config.url,
-            headers: response.config.headers,
-          },
-        });
-
-        // Log detalhado da resposta
-        console.log("Detalhes da resposta:", {
-          total: response.data.total,
-          limit: response.data.limit,
-          offset: response.data.offset,
-          next: response.data.next,
-          items: response.data.items?.length || 0,
-        });
 
         if (response.data.items) {
           allPlaylists = [...allPlaylists, ...response.data.items];
         }
         nextUrl = response.data.next;
       }
-
-      console.log("Total de playlists encontradas:", allPlaylists.length);
-      console.log("Primeiras playlists:", allPlaylists.slice(0, 2));
 
       // Sort playlists by creation date (newest first)
       const sortedPlaylists = allPlaylists.sort((a, b) => {

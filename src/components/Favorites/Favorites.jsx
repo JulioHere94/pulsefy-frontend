@@ -96,12 +96,10 @@ const Favorites = ({ accessToken, onSaveFavorites, closeModal }) => {
     try {
       setIsSaving(true);
       setError(null);
-      console.log("Salvando artistas:", selectedArtists);
 
       await favoritesService.saveFavoriteArtists(selectedArtists);
       onSaveFavorites(selectedArtists);
 
-      console.log("Artistas salvos com sucesso!");
       if (typeof closeModal === "function") {
         closeModal();
       }

@@ -20,14 +20,9 @@ const SpotifyCallback = () => {
       }
 
       if (code) {
-        console.log("Código de autorização recebido:", code);
         try {
           const data = await getAccessToken(code);
-          console.log("Tokens obtidos com sucesso:", {
-            access_token: data.access_token ? "Presente" : "Ausente",
-            refresh_token: data.refresh_token ? "Presente" : "Ausente",
-            expires_in: data.expires_in,
-          });
+          
 
           // Notifica a janela principal sobre o sucesso
           if (window.opener) {
@@ -40,7 +35,6 @@ const SpotifyCallback = () => {
               },
               "*"
             );
-            console.log("Mensagem enviada para a janela principal");
           } else {
             console.error("Janela principal não encontrada");
           }

@@ -19,7 +19,6 @@ const Header = () => {
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.data.type === "SPOTIFY_AUTH_SUCCESS") {
-        console.log("Autenticação Spotify bem-sucedida");
         if (authPopup) {
           authPopup.close();
           setAuthPopup(null);

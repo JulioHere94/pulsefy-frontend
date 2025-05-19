@@ -24,7 +24,7 @@ const NewPlaylist = ({ closeModal }) => {
         public: false,
       });
 
-      console.log("Playlist criada com sucesso:", response);
+
       alert("Playlist criada com sucesso!");
       closeModal();
     } catch (error) {
