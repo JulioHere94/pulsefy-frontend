@@ -1,12 +1,31 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# ![Pulsefy](./public/pulsefy.png) Pulsefy - Gerador de Playlists Personalizadas ![Pulsefy](./public/pulsefy.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pulsefy é um aplicativo web que cria playlists personalizadas de acordo com o seu humor e com base nos seus artistas favoritos. O objetivo é proporcionar uma experiência musical única, conectando emoções e preferências musicais de forma inteligente.
 
-## Expanding the ESLint configuration
+## Como funciona?
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Selecione seu humor:** Escolha entre diferentes estados de espírito (feliz, triste, animado, relaxado, etc.).
+2. **Adicione seus artistas favoritos:** Informe quais artistas você mais gosta.
+3. **Geração automática de playlist:** O Pulsefy utiliza suas escolhas para buscar músicas que combinam com seu humor e preferências.
+4. **Ouça sua playlist:** Curta sua seleção personalizada diretamente pelo aplicativo.
+
+## Integração com APIs
+
+- **Spotify API:** Utilizada para buscar músicas, criar playlists e permitir a reprodução das faixas diretamente no aplicativo.
+- **Last.fm API:** Utilizada para obter informações detalhadas sobre artistas, tendências e recomendações baseadas no seu perfil musical.
+
+Essas integrações garantem que as playlists sejam sempre atualizadas e relevantes para o seu gosto.
+
+## Acesse o Front-end
+
+Assim que o projeto estiver publicado, você poderá acessar o Pulsefy pelo link abaixo:
+
+[Pulsefy - Acesse aqui - Ainda não publicado](https://SEU-LINK-AQUI.com)
+
+
+## Próximos Passos
+- Implementação do back-end para criação de usuarios 
+- Autenticação de usuarios via backend
+- criação de banco de dados de usuarios (poderão ser utilizados para mkt e afins)
