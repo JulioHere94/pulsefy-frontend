@@ -4,7 +4,9 @@ import "../../blocks/footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>© 2025 Julio Cesar Heredia. Todos os direitos reservados.</p>
+      <div className="container">
+        <p>© 2025 Julio Cesar Heredia. Todos os direitos reservados.</p>
+      </div>
     </footer>
   );
 };

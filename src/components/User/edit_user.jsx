@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../../blocks/edit_user.css";
 import Header from "../Header/header";
+import Footer from "../Footer/footer";
 
 const EditUser = () => {
   const [userName, setUserName] = useState("Usuário");
@@ -46,6 +47,7 @@ const EditUser = () => {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

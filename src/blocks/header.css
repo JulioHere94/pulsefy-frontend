@@ -244,3 +244,13 @@ header {
     height: 16px;
   }
 }
+
+/* Adicione ao index.css ou crie um novo arquivo importado */
+.container {
+  max-width: 1800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+}

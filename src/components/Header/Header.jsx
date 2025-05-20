@@ -93,74 +93,79 @@ const Header = () => {
 
   return (
     <header>
-      <div className="header-container">
-        <img src={Logo} alt="Logo" className="logo" />
-        <button
-          className="hamburger"
-          aria-label="Abrir menu"
-          onClick={() => setIsMobileMenuOpen((v) => !v)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-        <Navigation
-          isMobileMenuOpen={isMobileMenuOpen}
-          handleNavClick={handleNavClick}
-        />
-        <div className="header-actions">
-          {spotifyToken ? (
-            <button
-              className="spotify-status-button connected"
-              onClick={handleSpotifyLogout}
-            >
+      <div className="container">
+        <div className="header-container">
+          <img src={Logo} alt="Logo" className="logo" />
+          <button
+            className="hamburger"
+            aria-label="Abrir menu"
+            onClick={() => setIsMobileMenuOpen((v) => !v)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <Navigation
+            isMobileMenuOpen={isMobileMenuOpen}
+            handleNavClick={handleNavClick}
+          />
+          <div className="header-actions">
+            {spotifyToken ? (
+              <button
+                className="spotify-status-button connected"
+                onClick={handleSpotifyLogout}
+              >
+                <img
+                  src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
+                  alt="Spotify"
+                  className="spotify-button-icon"
+                />
+                {user
+                  ? `Conectado como ${user.display_name}`
+                  : "Conectado ao Spotify"}
+              </button>
+            ) : (
+              <button
+                className="spotify-status-button"
+                onClick={handleSpotifyConnect}
+              >
+                <img
+                  src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
+                  alt="Spotify"
+                  className="spotify-button-icon"
+                />
+                Conectar Spotify
+              </button>
+            )}
+            <div className="user-box" onClick={toggleUserModal}>
               <img
-                src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
-                alt="Spotify"
-                className="spotify-button-icon"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJfmT5MclUjitj8NyMA0tRWoxClHDs0-zsQ&s"
+                alt="User Icon"
+                className="user-icon"
               />
-              {user
-                ? `Conectado como ${user.display_name}`
-                : "Conectado ao Spotify"}
-            </button>
-          ) : (
-            <button
-              className="spotify-status-button"
-              onClick={handleSpotifyConnect}
-            >
-              <img
-                src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"
-                alt="Spotify"
-                className="spotify-button-icon"
-              />
-              Conectar Spotify
-            </button>
-          )}
-          <div className="user-box" onClick={toggleUserModal}>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJfmT5MclUjitj8NyMA0tRWoxClHDs0-zsQ&s"
-              alt="User Icon"
-              className="user-icon"
-            />
-            <span>Olá, Usuário!</span>
+              <span>Olá, Usuário!</span>
+            </div>
           </div>
         </div>
+        {isUserModalOpen && (
+          <div className="user-modal-overlay">
+            <div className="user-modal">
+              <button className="close-button" onClick={toggleUserModal}>
+                &times;
+              </button>
+              <button className="user-modal-button" onClick={handleEditUser}>
+                Alterar Usuário
+              </button>
+              <button
+                className="user-modal-button logout"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-      {isUserModalOpen && (
-        <div className="user-modal-overlay">
-          <div className="user-modal">
-            <button className="close-button" onClick={toggleUserModal}>
-              &times;
-            </button>
-            <button className="user-modal-button" onClick={handleEditUser}>
-              Alterar Usuário
-            </button>
-            <button className="user-modal-button logout" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
