@@ -1,8 +1,8 @@
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
-const redirectUri = "http://127.0.0.1:3000/callback";
-const clientId = "8031e210cee64361a80e762e1886b2a1";
-const clientSecret = "206408a431394a52a93388d47c9a8216";
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
+const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const clientSecret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 
 // Definindo os escopos que precisamos
 const scopes = [
@@ -46,7 +46,6 @@ export const getTokenFromUrl = () => {
 // Função para obter o token de acesso usando o código de autorização
 export const getAccessToken = async (code) => {
   try {
-
     const response = await fetch(tokenEndpoint, {
       method: "POST",
       headers: {
