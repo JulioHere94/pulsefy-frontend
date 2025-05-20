@@ -22,7 +22,7 @@ Essas integrações garantem que as playlists sejam sempre atualizadas e relevan
 
 Assim que o projeto estiver publicado, você poderá acessar o Pulsefy pelo link abaixo:
 
-[Pulsefy - Acesse aqui - Ainda não publicado](https://SEU-LINK-AQUI.com)
+[Pulsefy - Acesse aqui - Ainda não publicado](https://juliohere94.github.io/pulsefy-frontend/)
 
 
 ## Próximos Passos
