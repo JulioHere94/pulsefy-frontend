@@ -3,7 +3,7 @@ import { useSpotify } from "../../context/SpotifyContext";
 import { getAccessToken } from "../../utils/spotify.config";
 
 const SpotifyCallback = () => {
-  const { spotifyToken } = useSpotify();
+  useSpotify();
 
   useEffect(() => {
     const handleCallback = async () => {
@@ -22,7 +22,6 @@ const SpotifyCallback = () => {
       if (code) {
         try {
           const data = await getAccessToken(code);
-          
 
           // Notifica a janela principal sobre o sucesso
           if (window.opener) {

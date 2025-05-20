@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import {
-  getTokenFromUrl,
   checkTokenValidity,
-  getAccessToken,
   refreshAccessToken,
 } from "../utils/spotify.config";
 
@@ -30,7 +28,6 @@ export const SpotifyProvider = ({ children }) => {
   const saveTokens = (accessToken, refreshToken, expiresIn) => {
     const expiryTime = new Date().getTime() + expiresIn * 1000;
 
-
     sessionStorage.setItem("spotify_token", accessToken);
     sessionStorage.setItem("spotify_refresh_token", refreshToken);
     sessionStorage.setItem("spotify_token_expiry", expiryTime.toString());
@@ -41,7 +38,6 @@ export const SpotifyProvider = ({ children }) => {
 
   // Função para limpar os tokens
   const clearTokens = () => {
-
     sessionStorage.removeItem("spotify_token");
     sessionStorage.removeItem("spotify_refresh_token");
     sessionStorage.removeItem("spotify_token_expiry");

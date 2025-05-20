@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import spotifyService from "../../../services/spotifyService";
 import { useSpotify } from "../../../context/SpotifyContext";
 import "../../../blocks/playlist.css";
@@ -11,22 +11,7 @@ const Playlist = ({ closeModal }) => {
   const [error, setError] = useState(null);
   const { spotifyToken } = useSpotify();
 
-  useEffect(() => {
-    console.log(
-      "Token no componente Playlist:",
-      spotifyToken?.substring(0, 10) + "..."
-    );
-    if (spotifyToken) {
-      loadPlaylists();
-    } else {
-      setError(
-        "Token do Spotify não encontrado. Por favor, faça login novamente."
-      );
-      setIsLoading(false);
-    }
-  }, [spotifyToken]);
-
-  const loadPlaylists = async () => {
+  const loadPlaylists = useCallback(async () => {
     try {
       console.log(
         "Iniciando carregamento de playlists com token:",
@@ -56,7 +41,22 @@ const Playlist = ({ closeModal }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [spotifyToken]);
+
+  useEffect(() => {
+    console.log(
+      "Token no componente Playlist:",
+      spotifyToken?.substring(0, 10) + "..."
+    );
+    if (spotifyToken) {
+      loadPlaylists();
+    } else {
+      setError(
+        "Token do Spotify não encontrado. Por favor, faça login novamente."
+      );
+      setIsLoading(false);
+    }
+  }, [spotifyToken, loadPlaylists]);
 
   const handlePlaylistSelect = async (playlist) => {
     try {

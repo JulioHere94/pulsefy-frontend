@@ -7,32 +7,24 @@ function getAccessToken() {
 }
 
 export async function apiGet(endpoint) {
-  try {
-    const res = await fetch(`${BASE_URL}${endpoint}`, {
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    });
-    if (!res.ok) throw new Error("Erro ao buscar dados da API");
-    return await res.json();
-  } catch (error) {
-    throw error;
-  }
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`,
+    },
+  });
+  if (!res.ok) throw new Error("Erro ao buscar dados da API");
+  return await res.json();
 }
 
 export async function apiPost(endpoint, body) {
-  try {
-    const res = await fetch(`${BASE_URL}${endpoint}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${getAccessToken()}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-    if (!res.ok) throw new Error("Erro ao enviar dados para a API");
-    return await res.json();
-  } catch (error) {
-    throw error;
-  }
+  const res = await fetch(`${BASE_URL}${endpoint}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getAccessToken()}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error("Erro ao enviar dados para a API");
+  return await res.json();
 }

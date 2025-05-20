@@ -11,7 +11,6 @@ const Main = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPlaylistModalOpen, setIsPlaylistModalOpen] = useState(false);
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
-  const [favoriteArtists, setFavoriteArtists] = useState([]);
   const { spotifyToken, isLoading } = useSpotify();
 
   const openModal = () => {
@@ -43,10 +42,6 @@ const Main = () => {
   };
 
   const closeFavorites = () => setIsFavoritesOpen(false);
-
-  const handleSaveFavorites = (artists) => {
-    setFavoriteArtists(artists);
-  };
 
   if (isLoading) {
     return (
@@ -89,11 +84,7 @@ const Main = () => {
         </div>
       </main>
       {isFavoritesOpen && (
-        <Favorites
-          accessToken={spotifyToken}
-          onSaveFavorites={handleSaveFavorites}
-          closeModal={closeFavorites}
-        />
+        <Favorites accessToken={spotifyToken} closeModal={closeFavorites} />
       )}
       {isModalOpen && <PlaylistGenerator closeModal={closeModal} />}
       {isPlaylistModalOpen && <Playlist closeModal={closePlaylistModal} />}

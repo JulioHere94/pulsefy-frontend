@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import spotifyService from "../../services/spotifyService";
 import { favoritesService } from "../../services/favoritesService";
 import "../../blocks/favorites.css";
@@ -7,19 +7,33 @@ const Favorites = ({ accessToken, onSaveFavorites, closeModal }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedArtists, setSelectedArtists] = useState([]);
-  const [topArtists, setTopArtists] = useState([]);
   const [isSaving, setIsSaving] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (accessToken) {
-      loadInitialData();
+  const loadTopArtists = useCallback(async () => {
+    try {
+      await spotifyService.getTopArtists(accessToken);
+    } catch (error) {
+      console.error("Error loading top artists:", error);
+      throw error;
     }
   }, [accessToken]);
 
-  const loadInitialData = async () => {
+  const loadFavoriteArtists = useCallback(async () => {
+    try {
+      const favorites = await favoritesService.getFavoriteArtists();
+      if (favorites && favorites.artists) {
+        setSelectedArtists(favorites.artists);
+      }
+    } catch (error) {
+      console.error("Error loading favorite artists:", error);
+      throw error;
+    }
+  }, []);
+
+  const loadInitialData = useCallback(async () => {
     try {
       setIsLoading(true);
       setError(null);
@@ -30,29 +44,13 @@ const Favorites = ({ accessToken, onSaveFavorites, closeModal }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [loadTopArtists, loadFavoriteArtists]);
 
-  const loadTopArtists = async () => {
-    try {
-      const artists = await spotifyService.getTopArtists(accessToken);
-      setTopArtists(artists);
-    } catch (error) {
-      console.error("Error loading top artists:", error);
-      throw error;
+  useEffect(() => {
+    if (accessToken) {
+      loadInitialData();
     }
-  };
-
-  const loadFavoriteArtists = async () => {
-    try {
-      const favorites = await favoritesService.getFavoriteArtists();
-      if (favorites && favorites.artists) {
-        setSelectedArtists(favorites.artists);
-      }
-    } catch (error) {
-      console.error("Error loading favorite artists:", error);
-      throw error;
-    }
-  };
+  }, [accessToken, loadInitialData]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -98,7 +96,9 @@ const Favorites = ({ accessToken, onSaveFavorites, closeModal }) => {
       setError(null);
 
       await favoritesService.saveFavoriteArtists(selectedArtists);
-      onSaveFavorites(selectedArtists);
+      if (typeof onSaveFavorites === "function") {
+        onSaveFavorites(selectedArtists);
+      }
 
       if (typeof closeModal === "function") {
         closeModal();

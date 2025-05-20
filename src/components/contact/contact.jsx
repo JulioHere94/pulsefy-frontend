@@ -6,7 +6,7 @@ import Footer from "../Footer/footer";
 const Contact = () => {
   const [enviado, setEnviado] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     // Formsubmit will handle the submission
     setEnviado(true);
   };

@@ -7,7 +7,6 @@ import "../../blocks/playlist-generator.css";
 
 const PlaylistGenerator = ({ closeModal }) => {
   const [mood, setMood] = useState("");
-  const [genre, setGenre] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);

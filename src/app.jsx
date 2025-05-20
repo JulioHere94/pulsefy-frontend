@@ -68,4 +68,6 @@ const App = () => (
   </StrictMode>
 );
 
+export default App;
+
 createRoot(document.getElementById("root")).render(<App />);

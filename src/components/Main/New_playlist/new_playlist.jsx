@@ -17,13 +17,11 @@ const NewPlaylist = ({ closeModal }) => {
     setLoading(true);
 
     try {
-      // Aqui você pode adaptar o endpoint e body conforme sua lógica
-      const response = await apiPost("/me/playlists", {
+      await apiPost("/me/playlists", {
         name: `Playlist ${mood} - ${genre}`,
         description: `Criada com humor ${mood} e gênero ${genre}`,
         public: false,
       });
-
 
       alert("Playlist criada com sucesso!");
       closeModal();
