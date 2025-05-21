@@ -22,8 +22,8 @@ Essas integrações garantem que as playlists sejam sempre atualizadas e relevan
 
 Assim que o projeto estiver publicado, você poderá acessar o Pulsefy pelo link abaixo:
 
-[Pulsefy - Acesse aqui - Ainda não publicado](https://juliohere94.github.io/pulsefy-frontend/)
-
+[Pulsefy - Acesse aqui](http://pulsefy.mooo.com/login)
+Lembre-se: trata-se somente do front-end, portanto utilize qualquer email e senha que irá logar
 
 ## Próximos Passos
 - Implementação do back-end para criação de usuarios 
