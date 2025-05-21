@@ -1,6 +1,6 @@
 import React from "react";
 import "../../blocks/about.css";
-import Header from "../Header/header";
+import Header from "../Header/Header";
 import Footer from "../Footer/footer";
 import LogoPulsefy from "../../images/Logo_pulsefy.png";
 import LogoTripleten from "../../images/logo_tripleten.svg"; // ajuste o nome se necessário
