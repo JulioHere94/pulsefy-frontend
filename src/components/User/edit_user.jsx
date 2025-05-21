@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../blocks/edit_user.css";
-import Header from "../Header/header";
+import Header from "../Header/Header";
 import Footer from "../Footer/footer";
 
 const EditUser = () => {

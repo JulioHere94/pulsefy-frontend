@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../blocks/main.css";
-import Header from "../Header/header";
+import Header from "../Header/Header";
 import Footer from "../Footer/footer";
 import Playlist from "./Playlist/playlist";
 import Favorites from "../Favorites/Favorites";
