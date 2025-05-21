@@ -22,7 +22,7 @@ Essas integrações garantem que as playlists sejam sempre atualizadas e relevan
 
 Assim que o projeto estiver publicado, você poderá acessar o Pulsefy pelo link abaixo:
 
-[Pulsefy - Acesse aqui](http://pulsefy.mooo.com/login)
+[Pulsefy - Acesse aqui](http://pulsefy.mooo.com)
 Lembre-se: trata-se somente do front-end, portanto utilize qualquer email e senha que irá logar
 
 ## Próximos Passos
