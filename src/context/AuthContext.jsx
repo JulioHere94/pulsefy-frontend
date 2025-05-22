@@ -1,24 +1,55 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import authService from "../services/authService";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("isAuthenticated")
+    authService.isAuthenticated()
   );
+  const [user, setUser] = useState(authService.getCurrentUser());
+  const [loading, setLoading] = useState(true);
 
-  const login = () => {
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+    if (user) {
+      setUser(user);
+    }
+    setLoading(false);
+  }, []);
+
+  const login = async (credentials) => {
+    const data = await authService.login(credentials);
+    setUser(data.user);
     setIsAuthenticated(true);
-    localStorage.setItem("isAuthenticated", "true");
+    return data;
+  };
+
+  const register = async (userData) => {
+    const data = await authService.register(userData);
+    return data;
   };
 
   const logout = () => {
+    authService.logout();
+    setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem("isAuthenticated");
   };
 
+  const updateUser = async (userData) => {
+    const updatedUser = await authService.updateUser(userData);
+    setUser(updatedUser);
+    return updatedUser;
+  };
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, login, logout, register, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

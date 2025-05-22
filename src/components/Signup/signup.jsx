@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../blocks/signup.css";
+import { useAuth } from "../../context/AuthContext";
 import Logo from "../../images/Logo_pulsefy.png";
 
 const Signup = () => {
@@ -8,21 +9,33 @@ const Signup = () => {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !pass || !confirmPass || !name) {
-      alert("Preencha todos os campos!");
+      setError("Preencha todos os campos!");
       return;
     }
     if (pass !== confirmPass) {
-      alert("As senhas não coincidem!");
+      setError("As senhas não coincidem!");
       return;
     }
-    // Aqui você pode adicionar a lógica de cadastro (API, etc)
-    alert("Cadastro realizado com sucesso!");
-    navigate("/login");
+
+    try {
+      setLoading(true);
+      setError("");
+      await register({ nome: name, email, senha: pass });
+      alert("Cadastro realizado com sucesso!");
+      navigate("/login");
+    } catch (error) {
+      setError(error.msg || "Erro ao realizar cadastro. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -31,6 +44,7 @@ const Signup = () => {
         <img src={Logo} alt="Logo" className="login-logo" />
         <h2 className="login-title">Criar Conta no Pulsefy</h2>
         <p className="login-text">Preencha os dados para se inscrever</p>
+        {error && <p className="error-message">{error}</p>}
         <form className="login-form" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -38,6 +52,7 @@ const Signup = () => {
             onChange={(e) => setName(e.target.value)}
             className="login-input"
             placeholder="Nome"
+            disabled={loading}
           />
           <input
             type="email"
@@ -45,6 +60,7 @@ const Signup = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="login-input"
             placeholder="E-mail"
+            disabled={loading}
           />
           <input
             type="password"
@@ -52,6 +68,7 @@ const Signup = () => {
             onChange={(e) => setPass(e.target.value)}
             className="login-input"
             placeholder="Senha"
+            disabled={loading}
           />
           <input
             type="password"
@@ -59,9 +76,10 @@ const Signup = () => {
             onChange={(e) => setConfirmPass(e.target.value)}
             className="login-input"
             placeholder="Confirme a senha"
+            disabled={loading}
           />
-          <button type="submit" className="login-button">
-            Criar Conta
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? "Criando conta..." : "Criar Conta"}
           </button>
         </form>
         <p className="signup-link">

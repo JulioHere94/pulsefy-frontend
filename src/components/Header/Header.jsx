@@ -13,29 +13,50 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [authPopup, setAuthPopup] = useState(null);
   const navigate = useNavigate();
-  const { logout } = useAuth();
-  const { spotifyToken, user, logout: spotifyLogout } = useSpotify();
+  const { logout, user, updateUser } = useAuth();
+  const {
+    spotifyToken,
+    user: spotifyUser,
+    logout: spotifyLogout,
+  } = useSpotify();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSpotifyConnected, setIsSpotifyConnected] = useState(false);
+  const [feedbackModal, setFeedbackModal] = useState({
+    isOpen: false,
+    type: "",
+    message: "",
+  });
+  const [editForm, setEditForm] = useState({
+    nome: user?.nome || "",
+    imagem: user?.imagem || "",
+  });
 
   useEffect(() => {
     const handleMessage = (event) => {
+      // console.log("Mensagem recebida do popup:", event.data);
+
       if (event.data.type === "SPOTIFY_AUTH_SUCCESS") {
         if (authPopup) {
           authPopup.close();
           setAuthPopup(null);
         }
-      } else if (event.data.type === "SPOTIFY_AUTH_ERROR") {
-        console.error("Erro na autenticação Spotify:", event.data.error);
-        alert("Erro ao conectar com o Spotify. Por favor, tente novamente.");
+      } else if (event.data.type === "SPOTIFY_AUTH_ERROR" && event.data.error) {
+        // Só mostra erro se realmente não autenticou
+        if (!spotifyToken) {
+          console.error("Erro na autenticação Spotify:", event.data.error);
+          alert("Erro ao conectar com o Spotify. Por favor, tente novamente.");
+        }
         if (authPopup) {
           authPopup.close();
           setAuthPopup(null);
         }
       }
+      // Ignore outras mensagens
     };
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [authPopup]);
+  }, [authPopup, spotifyToken]);
 
   const handleSpotifyConnect = (e) => {
     e.preventDefault();
@@ -91,6 +112,31 @@ const Header = () => {
   // Fecha menu mobile ao navegar
   const handleNavClick = () => setIsMobileMenuOpen(false);
 
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateUser(editForm);
+      setFeedbackModal({
+        isOpen: true,
+        type: "success",
+        message: "Perfil atualizado com sucesso!",
+      });
+      setIsUserModalOpen(false);
+    } catch (error) {
+      setFeedbackModal({
+        isOpen: true,
+        type: "error",
+        message:
+          error.response?.data?.msg ||
+          "Erro ao atualizar perfil. Tente novamente.",
+      });
+    }
+  };
+
+  const closeFeedbackModal = () => {
+    setFeedbackModal({ ...feedbackModal, isOpen: false });
+  };
+
   return (
     <header>
       <div className="container">
@@ -120,8 +166,8 @@ const Header = () => {
                   alt="Spotify"
                   className="spotify-button-icon"
                 />
-                {user
-                  ? `Conectado como ${user.display_name}`
+                {spotifyUser
+                  ? `Conectado como ${spotifyUser.display_name}`
                   : "Conectado ao Spotify"}
               </button>
             ) : (
@@ -139,11 +185,11 @@ const Header = () => {
             )}
             <div className="user-box" onClick={toggleUserModal}>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMJfmT5MclUjitj8NyMA0tRWoxClHDs0-zsQ&s"
+                src={user?.imagem || "https://via.placeholder.com/40"}
                 alt="User Icon"
                 className="user-icon"
               />
-              <span>Olá, Usuário!</span>
+              <span>Olá, {user?.nome || "Usuário"}!</span>
             </div>
           </div>
         </div>
