@@ -1,0 +1,143 @@
+.user-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.user-modal {
+  background: #191414;
+  padding: 30px;
+  border-radius: 16px;
+  width: 300px;
+  box-shadow: 0 10px 32px rgba(30, 50, 30, 0.25);
+  text-align: center;
+  position: relative;
+  color: #fff;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.user-modal h2 {
+  font-size: 1.5rem;
+  color: #1db954;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.user-modal-button {
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: 100%;
+  transition: background 0.3s;
+  font-weight: bold;
+  margin-top: 45px;
+}
+
+.user-modal-button:hover {
+  background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
+}
+
+.user-modal-button.logout {
+  background-color: #dc3545;
+  background-image: none;
+}
+
+.user-modal-button.logout:hover {
+  background-color: #c82333;
+}
+
+.edit-user-container {
+  max-width: 400px;
+  margin: 200px auto;
+  padding: 20px;
+  background: #191414;
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(30, 50, 30, 0.25);
+  text-align: center;
+  color: #fff;
+}
+
+.edit-user-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 2px solid #1db954;
+}
+
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 10px;
+}
+
+.edit-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #1db954;
+  box-shadow: 0 0 4px rgba(29, 185, 84, 0.5);
+}
+
+.save-button {
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: bold;
+}
+
+.save-button:hover {
+  background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
+}
+
+.edit-user-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #1db954;
+  margin-bottom: 20px;
+}

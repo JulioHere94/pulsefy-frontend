@@ -1,0 +1,126 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #191414;
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(30, 50, 30, 0.25);
+  color: #fff;
+  padding: 32px 32px 24px 32px;
+  min-width: 320px;
+  max-width: 95vw;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content h2,
+.modal-content .title {
+  color: #1db954;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.new-playlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.new-playlist-form label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1db954;
+  text-align: left;
+}
+
+.new-playlist-form select,
+.new-playlist-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #282828;
+  border-radius: 8px;
+  background-color: #222;
+  color: #fff;
+}
+
+.new-playlist-form select:focus,
+.new-playlist-form input:focus {
+  outline: none;
+  border-color: #1db954;
+  box-shadow: 0 0 4px rgba(29, 185, 84, 0.5);
+}
+
+.submit-button,
+.save-button,
+.edit-button,
+.play-button {
+  background: linear-gradient(90deg, #1db954 0%, #1ed760 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.submit-button:hover,
+.save-button:hover,
+.edit-button:hover,
+.play-button:hover {
+  background: linear-gradient(90deg, #1ed760 0%, #1db954 100%);
+}
+
+.exit-button,
+.cancel-button,
+.user-modal-button.logout {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.exit-button:hover,
+.cancel-button:hover,
+.user-modal-button.logout:hover {
+  background: #c82333;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #1db954;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+}
+
+@media (max-width: 600px) {
+  .favorites-modal-content {
+    min-width: 90vw;
+    padding: 1rem;
+  }
+}

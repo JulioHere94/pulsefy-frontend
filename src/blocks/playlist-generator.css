@@ -1,0 +1,237 @@
+.playlist-generator-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.playlist-generator-content {
+  background-color: #282828;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.playlist-generator-content h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.close-button,
+.playlist-generator-close,
+.playlist-close,
+.favorites-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.close-button:hover,
+.playlist-generator-close:hover,
+.playlist-close:hover,
+.favorites-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.playlist-generator-form {
+  margin: 2rem 0;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.playlist-generator-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #1db954;
+  border-radius: 25px;
+  background-color: #121212;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+}
+
+.playlist-generator-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.playlist-generator-button:hover:not(:disabled) {
+  background-color: #1ed760;
+}
+
+.playlist-generator-button:disabled {
+  background-color: #535353;
+  cursor: not-allowed;
+}
+
+.playlist-results {
+  margin-top: 2rem;
+}
+
+.playlist-tracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.track-card {
+  background-color: #181818;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.2s;
+}
+
+.track-card:hover {
+  background-color: #282828;
+}
+
+.track-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.track-info {
+  flex: 1;
+}
+
+.track-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.track-info p {
+  margin: 0 0 1rem 0;
+  color: #b3b3b3;
+  font-size: 0.9rem;
+}
+
+.track-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #1db954;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.track-link:hover {
+  background-color: #1ed760;
+}
+
+.error-message {
+  background-color: #e74c3c;
+  color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.button-preloader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.playlist-save-form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.playlist-name-input {
+  padding: 0.75rem;
+  border: 2px solid #1db954;
+  border-radius: 25px;
+  background-color: #121212;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  min-width: 250px;
+}
+
+.playlist-save-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #1db954;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.playlist-save-button:hover:not(:disabled) {
+  background-color: #1ed760;
+}
+
+.playlist-save-button:disabled {
+  background-color: #535353;
+  cursor: not-allowed;
+}

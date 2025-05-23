@@ -1,0 +1,12 @@
+@import "./vendor/normalize.css";
+@import "./blocks/login.css";
+@import "./blocks/signup.css";
+@import "./blocks/header.css";
+@import "./blocks/footer.css";
+@import "./blocks/main.css";
+@import "./blocks/edit_user.css";
+@import "./blocks/new_playlist.css";
+@import "./blocks/playlist.css";
+@import "./blocks/cover_edit.css";
+@import "./blocks/body.css";
+@import "./vendor/fonts.css";
